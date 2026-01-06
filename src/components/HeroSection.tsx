@@ -39,7 +39,7 @@ export const HeroSection = () => {
             animationDelay: '300ms',
             animationFillMode: 'forwards'
           }}>
-              Computer Engineering Undergraduate | Web & ML Enthusiast
+              Computer Engineering Undergraduate | Fullstack Developer | ML Enthusiast
             </p>
             <p className="text-base md:text-lg text-muted-foreground/80 mb-8 max-w-lg mx-auto lg:mx-0 animate-fade-in-up opacity-0" style={{
             animationDelay: '400ms',

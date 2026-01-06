@@ -8,13 +8,7 @@ const education = [
     minor: 'Data Management',
     current: true,
   },
-  {
-    degree: 'GCE Advanced Level – Physical Science Stream',
-    institution: 'Maliyadeva College, Kurunegala',
-    period: 'Jan 2012 – Feb 2022',
-    subjects: 'Combined Mathematics, Physics, Chemistry',
-    current: false,
-  },
+ 
   {
     degree: 'Diploma in Information Technology',
     institution: 'IMBS, Sri Lanka',
@@ -27,6 +21,13 @@ const education = [
     institution: 'IMBS',
     period: '2021',
     focus: 'Management, Organizational Behavior, Business Law',
+    current: false,
+  },
+   {
+    degree: 'GCE Advanced Level – Physical Science Stream',
+    institution: 'Maliyadeva College, Kurunegala',
+    period: 'Jan 2012 – Feb 2022',
+    subjects: 'Combined Mathematics, Physics, Chemistry',
     current: false,
   },
 ];
