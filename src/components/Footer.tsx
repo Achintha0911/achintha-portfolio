@@ -9,14 +9,14 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
-            <span>© {currentYear} Achintha Rathnayake. Made with</span>
-            <Heart className="w-4 h-4 text-primary fill-primary" />
+            <span>© {currentYear} Achintha Rathnayake. </span>
+            
           </div>
 
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <a
-              href="https://linkedin.com/in/Achintha-Rathnayake"
+              href="https://www.linkedin.com/in/achintha-rathnayake-19b1a92a3/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-lg hover:bg-secondary transition-colors group"
