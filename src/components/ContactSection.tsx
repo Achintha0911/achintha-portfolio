@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { Mail, Phone, Linkedin, Github, Send, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const contactInfo = [
   {
@@ -22,7 +23,7 @@ const contactInfo = [
     icon: Linkedin,
     label: 'LinkedIn',
     value: 'Achintha-Rathnayake',
-    href: 'https://linkedin.com/in/Achintha-Rathnayake',
+    href: 'https://www.linkedin.com/in/achintha-rathnayake-19b1a92a3/',
   },
   {
     icon: Github,
@@ -41,20 +42,66 @@ export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all fields before submitting.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // Prepare template parameters that match your EmailJS template
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      };
 
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
+      // Send email using emailjs.send() with explicit parameters
+      const result = await emailjs.send(
+        'service_930glsq',
+        'template_zjyl0xc',
+        templateParams,
+        '3YY6ob23hI6mNoqLP'
+      );
 
-    setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
+      console.log('Email sent successfully:', result.text);
+
+      toast({
+        title: "Message Sent! ✓",
+        description: "Thank you for reaching out. I'll get back to you soon!",
+      });
+
+      setFormData({ name: '', email: '', message: '' });
+
+    } catch (error: any) {
+      console.error('Failed to send email:', error);
+      
+      toast({
+        title: "Failed to Send",
+        description: "Something went wrong. Please try again or email me directly at En108908@foe.sjp.ac.lk",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -179,7 +226,10 @@ export const ContactSection = () => {
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
-                  'Sending...'
+                  <>
+                    <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
+                    Sending...
+                  </>
                 ) : (
                   <>
                     Send Message
