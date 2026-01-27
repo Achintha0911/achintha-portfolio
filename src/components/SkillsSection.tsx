@@ -4,7 +4,7 @@ const skillCategories = [
   {
     title: 'Programming & Web',
     icon: Code,
-    skills: ['Java', 'Python', 'HTML', 'CSS', 'JavaScript', 'TypeScript'],
+    skills: ['C++', 'Python', 'HTML', 'CSS', 'JavaScript', 'TypeScript'],
     color: 'from-violet-500 to-purple-600',
   },
   {
@@ -28,7 +28,7 @@ const skillCategories = [
   {
     title: 'Design & Tools',
     icon: Palette,
-    skills: ['Graphic Design', 'Microsoft Office', 'Figma'],
+    skills: ['Graphic Design', 'Microsoft Office', ],
     color: 'from-fuchsia-500 to-purple-500',
   },
   {
